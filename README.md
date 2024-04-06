@@ -1,1 +1,1 @@
-Hackathon Animal care project
+Hackathon Animal project
