@@ -62,12 +62,54 @@ const getCartItems = async (req, res) => {
     try {
         const userId = req.userData.userId;
 
+        // Find all cart items for the user
         const cartItems = await Cart.find({ user: userId }).populate('product');
 
-        res.status(200).json({ success: true, data: cartItems });
+        // Initialize variables to store cart details
+        let totalItems = 0;
+        let totalPrice = 0;
+        let cartDetails = [];
+
+        // Loop through each cart item
+        for (const cartItem of cartItems) {
+            // Extract product details
+            const { name, price } = cartItem.product;
+            const quantity = cartItem.quantity;
+
+            // Calculate total price for each item
+            const itemTotalPrice = price * quantity;
+
+            // Update total items and total price
+            totalItems += quantity;
+            totalPrice += itemTotalPrice;
+
+            // Add item details to cartDetails array
+            cartDetails.push({
+                name,
+                quantity,
+                price,
+                itemTotalPrice
+            });
+        }
+
+        // Return cart details and total price
+        res.status(200).json({ success: true, totalItems, totalPrice, cartDetails });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
 };
+
+
+// const getCartItems = async (req, res) => {
+//     try {
+//         const userId = req.userData.userId;
+
+//         const cartItems = await Cart.find({ user: userId }).populate('product');
+
+//         res.status(200).json({ success: true, data: cartItems });
+//     } catch (error) {
+//         res.status(500).json({ success: false, error: error.message });
+//     }
+// };
 
 module.exports = { addToCart, removeCartItem, getCartItems };
