@@ -11,10 +11,28 @@ const mongoose = require("mongoose");
 const connectWithDB = require("./config/dbConfig");
 const server = require("http").createServer(app);
 
+const { configureMulterStorage } = require('./middlewares/Multer_imageurl');
+
+// Configure multer storage for file uploads
+const upload = configureMulterStorage();
+
+// Route to handle file upload
+app.post('/upload', upload.single('image'), (req, res) => {
+  // Check if file is present in the request
+  if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded' });
+  }
+
+  // File upload successful, send response with file details
+  const imageUrl = req.file.path;
+  res.status(200).json({ success: true, imageUrl });
+});
+
 // const connectDB = require('./db/connect')
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const productsRouter = require('./routes/product')
+const SOSRoutes = require('./routes/SOS');
 
 // const notFoundMiddleware = require('./middleware/not-found');
 // const errorMiddleware = require('./middleware/error-handler');
@@ -49,6 +67,8 @@ app.use(morgan('dev'));
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/product', productsRouter);
+app.use('/sos', SOSRoutes);
+
 // app.use('/order', orderRoutes);
 
 
