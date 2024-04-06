@@ -7,7 +7,7 @@ const Home = () => {
         <div
           className="w-full  h-full  bg-cover bg-center transition-all duration-300"
           style={{
-            backgroundImage: `url("https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&w=600")`,
+            backgroundImage: `url("/maindog.jpg")`,
             backgroundSize: "cover",
           }}
         >
@@ -24,7 +24,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Services Section */}
       {/* Services Section */}
       <div className="bg-white py-16 mt-8">
         <h1 className="text-3xl font-bold text-center text-teal-500 my-28 py-20" style={{ margin: '2rem', fontSize: '50px' }}>
@@ -105,20 +104,37 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-gray-100 py-16">
+      <div className="bg-white py-16 mt-8">
+        <h1 className="text-3xl font-bold text-center text-teal-500 my-28 py-20">
+          Featured Pets
+        </h1>
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8">Featured Pets</h2>
           <div className="flex overflow-x-auto">
             {/* Featured Pet 1 */}
             <div className="flex-shrink-0 mr-4">
               <img
-                src="/path_to_featured_pet_image.jpg"
-                alt="Featured Pet"
-                className="w-64 h-64 object-cover rounded-lg shadow-lg"
+                src="/pet1.jpg"
+                alt="Pet 1"
+                className="w-64 h-64 object-cover rounded-lg"
               />
-              <p className="text-center mt-2">Max</p>
             </div>
-            {/* Featured Pet 2, Featured Pet 3, etc. */}
+            {/* Featured Pet 2 */}
+            <div className="flex-shrink-0 mr-4">
+              <img
+                src="/pet2.jpg"
+                alt="Pet 2"
+                className="w-64 h-64 object-cover rounded-lg"
+              />
+            </div>
+            {/* Featured Pet 3 */}
+            <div className="flex-shrink-0 mr-4">
+              <img
+                src="/pet3.jpg"
+                alt="Pet 3"
+                className="w-64 h-64 object-cover rounded-lg"
+              />
+            </div>
+            {/* Add more Featured Pets as needed */}
           </div>
         </div>
       </div>
