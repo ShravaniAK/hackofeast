@@ -6,6 +6,11 @@ const SOS = require('../models/SOS');
 // Controller function to submit SOS
 const submitSOS = async (req, res) => {
     try {
+            // Check if file is present in the request
+            if (!req.file) {
+            return res.status(400).json({ success: false, message: 'No file uploaded' });
+           }
+
         // Assuming req.body contains other SOS submission data
         const { animalName, description, latitude, longitude, image } = req.body;
 
@@ -25,6 +30,7 @@ const submitSOS = async (req, res) => {
         
         res.status(201).json({ success: true, message: 'SOS submission saved successfully.', imageUrl });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ success: false, error: error.message });
     }
 };
