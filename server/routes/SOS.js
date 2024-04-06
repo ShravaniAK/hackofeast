@@ -6,7 +6,7 @@ const SOSController = require('../controllers/SOS');
 router.post('/submit', SOSController.submitSOS);
 
 // Route to update SOS status
-router.post('/update/:id', SOSController.updateSOSStatus);
+router.put('/update/:id', SOSController.updateSOSStatus);
 
 // Route to get all SOS submissions
 router.get('/getAll', SOSController.getAllSOS);

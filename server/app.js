@@ -41,6 +41,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const productsRouter = require('./routes/product')
 const SOSRoutes = require('./routes/SOS');
+const cartRoutes = require('./routes/cart');
 
 // const notFoundMiddleware = require('./middleware/not-found');
 // const errorMiddleware = require('./middleware/error-handler');
@@ -76,6 +77,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/product', productsRouter);
 app.use('/sos', SOSRoutes);
+app.use('/cart', cartRoutes);
 
 // app.use('/order', orderRoutes);
 
