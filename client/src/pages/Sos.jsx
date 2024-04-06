@@ -9,6 +9,7 @@ const Sos = () => {
   const [longitude, setLongitude] = useState(null);
   const [description, setDescription] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleAnimalNameChange = (event) => {
     setAnimalName(event.target.value);
@@ -59,7 +60,7 @@ const Sos = () => {
       longitude,
       description,
     };
-  
+
     try {
       const response = await fetch('https://hackofeast.onrender.com/SOS/submit', {
         method: 'POST',
@@ -68,9 +69,10 @@ const Sos = () => {
         },
         body: JSON.stringify(formData),
       });
-      console.log(formData)
+
       if (response.ok) {
         setIsSubmitted(true);
+        setShowSuccessMessage(true);
         console.log('Data sent successfully');
       } else {
         console.error('Failed to send data');
@@ -79,8 +81,9 @@ const Sos = () => {
       console.error('Error:', error);
     }
   };
+
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container flex flex-col mx-auto px-4 py-8">
       <label htmlFor="animalName" className="block font-semibold">
         Name of the animal:
       </label>
@@ -101,7 +104,7 @@ const Sos = () => {
 
       <button
         onClick={getLocation}
-        className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+        className="block bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded my-2"
       >
         Get Location
       </button>
@@ -133,13 +136,13 @@ const Sos = () => {
 
       <button
         onClick={handleSubmit}
-        className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+        className="block bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded my-2"
       >
         Submit
       </button>
 
-      {isSubmitted && (
-        <p className="font-semibold text-green-600">Data sent successfully</p>
+      {showSuccessMessage && (
+        <p style={{fontSize:"50px"}} className="font-bold font-6xl text-green-600">Data sent successfully</p>
       )}
     </div>
   );
