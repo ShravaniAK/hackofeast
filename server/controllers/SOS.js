@@ -10,7 +10,7 @@ const submitSOS = async (req, res) => {
         const { animalName, description, latitude, longitude, image } = req.body;
 
         // Make a POST request to /upload to upload the image
-        const uploadResponse = await axios.post('http://localhost:3000/upload', { image }, {
+        const uploadResponse = await axios.post('https://hackofeast.onrender.com/upload', { image }, {
             headers: {
                 'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
             }
