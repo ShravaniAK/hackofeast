@@ -47,7 +47,10 @@ const productSchema = new Schema({
         required: function() {
             return this.category === 'Object';
         }
-    }
+    },
+    imageUrl: {
+       type: String // URL of the product image
+    } 
 });
 
 const Product = mongoose.model('Product', productSchema);
