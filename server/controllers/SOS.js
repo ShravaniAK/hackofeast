@@ -5,25 +5,12 @@ const SOS = require('../models/SOS');
 
 // Controller function to submit SOS
 const submitSOS = async (req, res) => {
+    console.log(req.body);
+    // console.log(req.file);
     try {
-            // Check if file is present in the request
-            if (!req.file) {
-            return res.status(400).json({ success: false, message: 'No file uploaded' });
-           }
-
-        // Assuming req.body contains other SOS submission data
-        const { animalName, description, latitude, longitude, image } = req.body;
-
-        // Make a POST request to /upload to upload the image
-        const uploadResponse = await axios.post('https://hackofeast.onrender.com/upload', { image }, {
-            headers: {
-                'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
-            }
-        });
-
-        // Assuming the response contains the imageUrl
-        const { imageUrl } = uploadResponse.data;
-
+         // Assuming req.body contains other SOS submission data
+        const { animalName, description, latitude, longitude, imageUrl } = req.body;
+        
         // Save the SOS submission to the database with the imageUrl
         const newSOS = new SOS({ imageUrl, animalName, description, latitude, longitude, status: 'help wanted' });
         await newSOS.save();
