@@ -1,52 +1,63 @@
-
-import React, { useState } from 'react';
+// Dashboard.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import AnimalCard from './AnimalCard';
 
 const Dashboard = () => {
-  const [animals, setAnimals] = useState([
-    {
-      id: 1,
-      name: 'Tiger',
-      image: 'https://wildlifesos.org/wp-content/uploads/2022/06/Hyena_Treatment_injured_manchar_akash-2.jpg',
-      location: 'India',
-      description: 'The tiger is the largest living cat species and a member of the Panthera genus.',
-      dateTime: '2023-04-05 10:30 AM',
-      assigned: 'assigned',
-    },
-    {
-      id: 2,
-      name: 'Giraffe',
-      image: 'https://www.peta.org/wp-content/uploads/2014/11/IMG_0638__1415384579_144.223.39.42.jpg',
-      location: 'Africa',
-      description: 'The giraffe is a tall African hoofed mammal belonging to the genus Giraffa.',
-      dateTime: '2023-04-04 02:15 PM',
-      assigned: 'unassigned',
-    },
-    
-  ]);
+  const [animals, setAnimals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleAssignmentChange = (id, value) => {
-    setAnimals((prevAnimals) =>
-      prevAnimals.map((animal) =>
-        animal.id === id ? { ...animal, assigned: value } : animal
-      )
-    );
+  useEffect(() => {
+    // Fetch animal data from the API
+    const fetchAnimals = async () => {
+      try {
+        const response = await axios.get('https://hackofeast.onrender.com/SOS/getAll');
+        setAnimals(response.data.data);
+      } catch (error) {
+        console.error('Error fetching animals:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchAnimals();
+  }, []);
+
+  const handleAssignmentChange = async (animalId, status) => {
+    try {
+      const url = `https://hackofeast.onrender.com/SOS/update/${animalId}`;
+      const response = await axios.post(url, { status });
+
+      // Update the local state and the database
+      setAnimals((prevAnimals) =>
+        prevAnimals.map((animal) =>
+          animal._id === animalId ? { ...animal, status } : animal
+        )
+      );
+
+      // Update the database with the new status
+      const updatedAnimal = { ...response.data, status };
+      await axios.put(`https://hackofeast.onrender.com/SOS/update/${animalId}`, updatedAnimal);
+
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Animal Dashboard</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div>
+      <h1>Animal Dashboard</h1>
+      {isLoading ? (
+        <p>Loading animals...</p>
+      ) : animals.length > 0 ? (
+        <div>
           {animals.map((animal) => (
-            <AnimalCard
-              key={animal.id}
-              animal={animal}
-              onAssignmentChange={handleAssignmentChange}
-            />
+            <AnimalCard key={animal._id} animal={animal} onAssignmentChange={handleAssignmentChange} />
           ))}
         </div>
-      </div>
+      ) : (
+        <p>No animals found.</p>
+      )}
     </div>
   );
 };
