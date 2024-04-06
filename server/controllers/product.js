@@ -3,7 +3,7 @@ const Product = require('../models/product');
 // Get all products with name, quantity, price, and imageUrl
 const getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find({}, { name: 1, quantity: 1, price: 1, imageUrl: 1 });
+        const products = await Product.find({}, { name: 1, price: 1, imageUrl: 1, description: 1 });
         res.status(200).json({ success: true, count: products.length, data: products });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
