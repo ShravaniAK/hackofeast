@@ -26,22 +26,26 @@ const Home = () => {
 
       {/* Services Section */}
       <div className="bg-white py-16 mt-8">
-        <h1 className="text-3xl font-bold text-center text-teal-500 my-28 py-20" style={{ margin: '2rem', fontSize: '50px' }}>
+        <h1
+          className="text-3xl font-bold text-center text-teal-500 my-28 py-20"
+          style={{ margin: "2rem", fontSize: "50px" }}
+        >
           Our Services
         </h1>
+
         <div className="container mx-auto flex justify-center">
           <div className="w-full md:w-auto md:flex justify-between">
             {/* Service 1: Rescue Injured Pet */}
             <div
               className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg"
-              style={{ width: "250px" }}
+              style={{ width: "250px", marginRight: "20px" }} // Added inline CSS for right margin
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
                   <img
                     src="/injurd.png"
                     alt="Rescue Injured Pet"
-                    className="w-24 h-24" // Adjust the width and height here
+                    className="w-24 h-24"
                   />
                 </div>
               </div>
@@ -56,15 +60,15 @@ const Home = () => {
             </div>
             {/* Service 2: Adopt a Pet */}
             <div
-              className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg ml-4"
-              style={{ width: "250px" }}
+              className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg"
+              style={{ width: "250px", marginRight: "20px" }} // Added inline CSS for right margin
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
                   <img
                     src="/kitten.png"
                     alt="Adopt a Pet"
-                    className="w-24 h-24" // Adjust the width and height here
+                    className="w-24 h-24"
                   />
                 </div>
               </div>
@@ -73,21 +77,22 @@ const Home = () => {
                   Find Pet Needs
                 </h3>
                 <p className="text-teal-500 text-center">
-                  Find something for your new furry friend and give them a treat.
+                  Find something for your new furry friend and give them a
+                  treat.
                 </p>
               </div>
             </div>
             {/* Service 3: Pet Vaccination Center */}
             <div
-              className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg ml-4"
-              style={{ width: "250px" }}
+              className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg"
+              style={{ width: "250px" }} // No right margin for the last card
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
                   <img
                     src="/vaccine.png"
                     alt="Pet Vaccination Center"
-                    className="w-24 h-24" // Adjust the width and height here
+                    className="w-24 h-24"
                   />
                 </div>
               </div>
@@ -104,54 +109,59 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-white py-16 mt-8">
-        <h1 className="text-3xl font-bold text-center text-teal-500 my-28 py-20">
-          Featured Pets
-        </h1>
-        <div className="container mx-auto">
-          <div className="flex overflow-x-auto">
-            {/* Featured Pet 1 */}
-            <div className="flex-shrink-0 mr-4">
-              <img
-                src="/pet1.jpg"
-                alt="Pet 1"
-                className="w-64 h-64 object-cover rounded-lg"
-              />
+      <h1
+        className="text-3xl font-bold text-center text-teal-500 my-28 py-20"
+        style={{ margin: "2rem", fontSize: "50px" }}
+      >
+        Featured Pets
+      </h1>
+
+      <div className="flex justify-center">
+        <div className="bg-white py-16 mt-8">
+          <div className="container mx-auto">
+            <div className="flex overflow-x-auto" style={{ gap: "2rem" }}>
+              {/* Featured Pet 1 */}
+              <div className="flex-shrink-0">
+                <img
+                  src="/pet1.jpg"
+                  alt="Pet 1"
+                  className="w-64 h-64 object-cover rounded-lg"
+                />
+                <p className="text-center mt-2 text-teal-500">Pet Name 1</p>
+              </div>
+              {/* Featured Pet 2 */}
+              <div className="flex-shrink-0">
+                <img
+                  src="/pet2.jpg"
+                  alt="Pet 2"
+                  className="w-64 h-64 object-cover rounded-lg"
+                />
+                <p className="text-center mt-2 text-teal-500">Pet Name 1</p>
+              </div>
+              {/* Featured Pet 3 */}
+              <div className="flex-shrink-0">
+                <img
+                  src="/pet3.jpg"
+                  alt="Pet 3"
+                  className="w-64 h-64 object-cover rounded-lg"
+                />
+                <p className="text-center mt-2 text-teal-500">Pet Name 1</p>
+              </div>
+              {/* Featured Pet 4 */}
+              <div className="flex-shrink-0">
+                <img
+                  src="/pet4.jpg"
+                  alt="Pet 4"
+                  className="w-64 h-64 object-cover rounded-lg"
+                />
+                <p className="text-center mt-2 text-teal-500">Pet Name 1</p>
+              </div>
             </div>
-            {/* Featured Pet 2 */}
-            <div className="flex-shrink-0 mr-4">
-              <img
-                src="/pet2.jpg"
-                alt="Pet 2"
-                className="w-64 h-64 object-cover rounded-lg"
-              />
-            </div>
-            {/* Featured Pet 3 */}
-            <div className="flex-shrink-0 mr-4">
-              <img
-                src="/pet3.jpg"
-                alt="Pet 3"
-                className="w-64 h-64 object-cover rounded-lg"
-              />
-            </div>
-            {/* Add more Featured Pets as needed */}
           </div>
         </div>
       </div>
-
-      <div className="bg-white py-16">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Latest News & Updates
-          </h2>
-          {/* Latest news and updates content */}
-        </div>
-      </div>
-
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto">{/* Footer content */}</div>
-      </footer>
     </div>
+       
   );
 };
 
