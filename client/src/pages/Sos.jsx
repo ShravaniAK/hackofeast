@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ImageAndGeolocationComponent = () => {
+const Sos = () => {
   const [animalName, setAnimalName] = useState('');
   const [image, setImage] = useState(null);
   const [latitude, setLatitude] = useState(null);
@@ -47,8 +47,7 @@ const ImageAndGeolocationComponent = () => {
 
     const formDataObj = Object.fromEntries(formData.entries());
 
-  
-  console.log('Form Data:', formDataObj);
+    console.log('Form Data:', formDataObj);
 
     try {
       const response = await fetch('/api/endpoint', {
@@ -65,37 +64,47 @@ const ImageAndGeolocationComponent = () => {
     } catch (error) {
       console.error('Error:', error);
     }
-
   };
 
   return (
-    <div>
-      <label htmlFor="animalName">Name of the animal:</label>
+    <div className="container mx-auto px-4 py-8">
+      <label htmlFor="animalName" className="block font-semibold">Name of the animal:</label>
       <input
         type="text"
         id="animalName"
         value={animalName}
         onChange={handleAnimalNameChange}
+        className="block border border-gray-300 rounded px-4 py-2 my-2"
       />
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      <button onClick={getLocation}>Get Location</button>
-      {image && <img src={URL.createObjectURL(image)} alt="Uploaded" />}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        className="block border border-gray-300 rounded px-4 py-2 my-2"
+      />
+      <button onClick={getLocation} className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2">
+        Get Location
+      </button>
+      {image && <img src={URL.createObjectURL(image)} alt="Uploaded" className="block my-4 mx-auto max-w-full h-auto" />}
       {latitude && longitude && (
-        <div>
-          <p>Latitude: {latitude}</p>
-          <p>Longitude: {longitude}</p>
+        <div className="my-4">
+          <p className="font-semibold">Latitude: {latitude}</p>
+          <p className="font-semibold">Longitude: {longitude}</p>
         </div>
       )}
-      <label htmlFor="description">Description (optional):</label>
+      <label htmlFor="description" className="block font-semibold">Description (optional):</label>
       <textarea
         id="description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        className="block border border-gray-300 rounded px-4 py-2 my-2"
       />
-      <button onClick={handleSubmit}>Submit</button>
-      {isSubmitted && <p>Data sent successfully</p>}
+      <button onClick={handleSubmit} className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2">
+        Submit
+      </button>
+      {isSubmitted && <p className="font-semibold text-green-600">Data sent successfully</p>}
     </div>
   );
 };
 
-export default ImageAndGeolocationComponent;
+export default Sos;

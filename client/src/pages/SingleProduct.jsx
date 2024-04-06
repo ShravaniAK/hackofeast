@@ -1,3 +1,4 @@
+// SingleProduct.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -19,40 +20,48 @@ const SingleProduct = () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/product/${id}`);
       setProduct(response.data.data);
-      console.log(response.data.data);
     } catch (error) {
       console.error(`Error fetching product ${id}:`, error);
     }
   };
 
   const handleAddToCart = () => {
-    // Check if the product is already in the cart
     const existingCartItem = cart.find((item) => item._id === product._id);
 
     if (existingCartItem) {
-      // If the product is already in the cart, update the quantity
-      const updatedCart = cart.map((item) =>
-        item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+      setCart((prevCart) =>
+        prevCart.map((item) =>
+          item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+        )
       );
-      setCart(updatedCart);
     } else {
-      // If the product is not in the cart, add it with a quantity of 1
-      setCart([...cart, { ...product, quantity: 1 }]);
+      setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
     }
   };
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8">
       {product ? (
-        <div>
-          <h2>{product.name}</h2>
-          <p>Category: {product.category}</p>
-          <p>Price: {product.price}</p>
-          <p>Description: {product.description}</p>
-          <img src={product.imageUrl} alt={product.name} />
-          {product.category === 'Food' && <p>Weight: {product.weight}</p>}
-          {product.category === 'Object' && <p>Color: {product.color}</p>}
-          <button onClick={handleAddToCart}>Add to Cart</button>
+        <div className="flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg p-6 md:p-8">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-64 h-64 object-cover mb-4 md:mb-0 md:mr-8 rounded-lg"
+          />
+          <div>
+            <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
+            <p className="text-xl mb-4">Category: {product.category}</p>
+            <p className="text-xl mb-4">Price: ${product.price}</p>
+            <p className="text-lg mb-4">Description: {product.description}</p>
+            {product.category === 'Food' && <p className="text-lg mb-4">Weight: {product.weight}</p>}
+            {product.category === 'Object' && <p className="text-lg mb-4">Color: {product.color}</p>}
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
       ) : (
         <p>Loading...</p>

@@ -17,7 +17,7 @@ function Header() {
       method: 'get',
       maxBodyLength: Infinity,
 
-      url: 'https://teentekde-1.onrender.com/user/getuserdeatils',
+      url: 'https://hackofeast.onrender.com/user/getuserdeatils',
       headers: {
         Authorization: `bearer ${localStorage.getItem("token")}`
       }
@@ -51,12 +51,12 @@ function Header() {
   return (
     <header className="p-4 flex justify-between items-center">
       <Link to="/">
-        <h3 className="text-white text-xl">Animal-Aid-Hub</h3>
+        <h3 className=" text-xl">Animal-Aid-Hub</h3>
       </Link>
 
       <nav className="md:hidden">
         {/* Hamburger menu icon */}
-        <button onClick={toggleDropdown} className="text-white focus:outline-none">
+        <button onClick={toggleDropdown} className=" focus:outline-none">
           <svg
             className="h-6 w-6"
             fill="none"
@@ -102,22 +102,22 @@ function Header() {
       </nav>
 
       <nav className="hidden md:flex items-center space-x-4">
-        <Link to='/' className={`text-white ${location.pathname === '/' ? 'underline' : ''}`}>
+        <Link to='/' className={` ${location.pathname === '/' ? 'underline' : ''}`}>
           Home
         </Link>
-        <Link to='/product' className={`text-white ${location.pathname === '/marketplace' ? 'underline' : ''}`}>
+        <Link to='/product' className={` ${location.pathname === '/marketplace' ? 'underline' : ''}`}>
           Market Place
         </Link>
-        <Link to='/sos' className={`text-white ${location.pathname === '/sos' ? 'underline' : ''}`}>
+        <Link to='/sos' className={` ${location.pathname === '/sos' ? 'underline' : ''}`}>
           SOS/Rescue
         </Link>
-        <Link to='/dashboard' className={`text-white ${location.pathname === '/dashboard' ? 'underline' : ''}`}>
+        <Link to='/dashboard' className={` ${location.pathname === '/dashboard' ? 'underline' : ''}`}>
           Dashboard
         </Link>
-        <Link to='/vaccine' className={`text-white ${location.pathname === '/vaccine' ? 'underline' : ''}`}>
+        <Link to='/vaccine' className={` ${location.pathname === '/vaccine' ? 'underline' : ''}`}>
           Vaccine Centers
         </Link>
-        <Link to='/contact' className={`text-white ${location.pathname === '/contact' ? 'underline' : ''}`}>
+        <Link to='/contact' className={` ${location.pathname === '/contact' ? 'underline' : ''}`}>
           Contact us
         </Link>
         <div className="flex items-center">
@@ -127,7 +127,7 @@ function Header() {
             <p className="text-white">{profile}</p>
           </div>
         </div>
-        <button onClick={handleLogout} className="text-white">Logout</button>
+        <button onClick={handleLogout} >Logout</button>
       </nav>
     </header>
   )

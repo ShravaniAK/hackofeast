@@ -22,13 +22,20 @@ const ProductList = () => {
   };
 
   return (
-    <div>
-      <h2>Product List</h2>
-      <ul>
+    <div className="container mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-4">Product List</h2>
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
-          <li key={product._id}>
-            <Link to={`/product/${product._id}`}>
-              {product.name} - {product.quantity} - {product.category} - <img src={product.smallImage} alt={product.name} />
+          <li key={product._id} className="bg-white shadow-md">
+            <Link to={`/product/${product._id}`} className="block">
+              <div className="aspect-w-1 aspect-h-1">
+                <img src={product.smallImage} alt={product.name} className="object-cover w-full h-full" />
+              </div>
+              <div className="p-4">
+                <div className="text-sm">{product.name}</div>
+                <div className="text-xs text-gray-500">{product.quantity}</div>
+                <div className="text-xs text-gray-500">{product.category}</div>
+              </div>
             </Link>
           </li>
         ))}

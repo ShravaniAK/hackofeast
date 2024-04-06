@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const AnimalCard = ({ animal, onAssignmentChange }) => {
@@ -9,8 +8,11 @@ const AnimalCard = ({ animal, onAssignmentChange }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden my-2">
-      <img src={image} alt={name} className="w-full/2 h-12 object-cover mx-auto" />
+    <div className="rounded-lg shadow-md overflow-hidden flex my-2">
+      <div style={{width:"250px", height:'250px'}}>
+        <img src={image} alt={name} className="w-full h-full object-cover" />
+      </div>
+     
       <div className="p-4">
         <h2 className="text-xl font-bold text-gray-900 mb-2">{name}</h2>
         <p className="text-gray-700 mb-2">Location: {location}</p>

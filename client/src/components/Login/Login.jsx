@@ -14,7 +14,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "https://teentekde-1.onrender.com/auth/login";
+            const url = "https://hackofeast.onrender.com/auth/login";
             const { data: res } = await axios.post(url, {
                 email: data.email,
                 password: data.password,

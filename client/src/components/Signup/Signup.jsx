@@ -15,7 +15,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "https://teentekde-1.onrender.com/auth/register";
+            const url = "https://hackofeast.onrender.com/auth/register";
             const { data: res } = await axios.post(url, {
                 name: data.name,
                 email: data.email,
