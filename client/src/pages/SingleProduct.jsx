@@ -40,21 +40,21 @@ const SingleProduct = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="h-screen container my-auto mx-auto flex justify-center items-center ">
       {product ? (
-        <div className="flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg p-6 md:p-8">
+        <div className="flex flex-col md:flex-row items-center m-3 bg-white shadow-lg rounded-lg p-6 md:p-8">
           <img
             src={product.imageUrl}
             alt={product.name}
             className="w-64 h-64 object-cover mb-4 md:mb-0 md:mr-8 rounded-lg"
           />
-          <div>
-            <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
-            <p className="text-xl mb-4">Category: {product.category}</p>
-            <p className="text-xl mb-4">Price: ${product.price}</p>
-            <p className="text-lg mb-4">Description: {product.description}</p>
-            {product.category === 'Food' && <p className="text-lg mb-4">Weight: {product.weight}</p>}
-            {product.category === 'Object' && <p className="text-lg mb-4">Color: {product.color}</p>}
+          <div className='m-3 p-3'>
+            <h2 className="text-5xl font-bold py-4 px-6 m-2">{product.name}</h2>
+            <p className="text-xl px-6 mb-4">Category: {product.category}</p>
+            <p className="text-xl px-6 mb-4">Price: ${product.price}</p>
+            <p className="text-lg px-6 mb-4">Description: {product.description}</p>
+            {product.category === 'Food' && <p className="text-lg px-6 mb-4">Weight: {product.weight}</p>}
+            {product.category === 'Object' && <p className="text-lg px-6 mb-4">Color: {product.color}</p>}
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={handleAddToCart}

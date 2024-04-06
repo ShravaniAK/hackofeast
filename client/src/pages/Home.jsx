@@ -27,7 +27,7 @@ const Home = () => {
       {/* Services Section */}
       {/* Services Section */}
       <div className="bg-white py-16 mt-8">
-        <h1 className="text-3xl font-bold text-center text-teal-500 my-28 py-20">
+        <h1 className="text-3xl font-bold text-center text-teal-500 my-28 py-20" style={{ margin: '2rem', fontSize: '50px' }}>
           Our Services
         </h1>
         <div className="container mx-auto flex justify-center">
@@ -35,7 +35,7 @@ const Home = () => {
             {/* Service 1: Rescue Injured Pet */}
             <div
               className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg"
-              style={{ width: "300px" }}
+              style={{ width: "250px" }}
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
@@ -58,7 +58,7 @@ const Home = () => {
             {/* Service 2: Adopt a Pet */}
             <div
               className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg ml-4"
-              style={{ width: "300px" }}
+              style={{ width: "250px" }}
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
@@ -71,17 +71,17 @@ const Home = () => {
               </div>
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2 text-teal-500 text-center">
-                  Adopt a Pet
+                  Find Pet Needs
                 </h3>
                 <p className="text-teal-500 text-center">
-                  Find your new furry friend and give them a forever home.
+                  Find something for your new furry friend and give them a treat.
                 </p>
               </div>
             </div>
             {/* Service 3: Pet Vaccination Center */}
             <div
               className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg ml-4"
-              style={{ width: "300px" }}
+              style={{ width: "250px" }}
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
