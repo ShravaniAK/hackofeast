@@ -28,7 +28,7 @@ app.use(
             "http://127.0.0.1:3000",
             "http://localhost:3000",
             'http://localhost:5173',
-            'https://teentekde-1.onrender.com',
+            'https://hackofeast.onrender.com',
         ],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         credentials: true,
