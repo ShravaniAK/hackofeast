@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import firebase, { db, storage } from '../firebase';
 
 const Sos = () => {
   const [animalName, setAnimalName] = useState('');
-  const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [description, setDescription] = useState('');
@@ -14,7 +16,19 @@ const Sos = () => {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    setImage(file);
+    setImageFile(file);
+    uploadImageToFirebase(file);
+  };
+
+  const uploadImageToFirebase = async (file) => {
+    try {
+      const storageRef = storage.ref(`images/${file.name}`);
+      await storageRef.put(file);
+      const imageUrl = await storageRef.getDownloadURL();
+      setImageUrl(imageUrl);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   };
 
   const getLocation = () => {
@@ -38,23 +52,23 @@ const Sos = () => {
   };
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append('animalName', animalName);
-    formData.append('image', image);
-    formData.append('latitude', latitude);
-    formData.append('longitude', longitude);
-    formData.append('description', description);
-
-    const formDataObj = Object.fromEntries(formData.entries());
-
-    console.log('Form Data:', formDataObj);
-
+    const formData = {
+      animalName,
+      imageUrl,
+      latitude,
+      longitude,
+      description,
+    };
+  
     try {
-      const response = await fetch('/api/endpoint', {
+      const response = await fetch('https://hackofeast.onrender.com/SOS/submit', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-
+      console.log(formData)
       if (response.ok) {
         setIsSubmitted(true);
         console.log('Data sent successfully');
@@ -65,10 +79,11 @@ const Sos = () => {
       console.error('Error:', error);
     }
   };
-
   return (
     <div className="container mx-auto px-4 py-8">
-      <label htmlFor="animalName" className="block font-semibold">Name of the animal:</label>
+      <label htmlFor="animalName" className="block font-semibold">
+        Name of the animal:
+      </label>
       <input
         type="text"
         id="animalName"
@@ -76,33 +91,56 @@ const Sos = () => {
         onChange={handleAnimalNameChange}
         className="block border border-gray-300 rounded px-4 py-2 my-2"
       />
+
       <input
         type="file"
         accept="image/*"
         onChange={handleImageUpload}
         className="block border border-gray-300 rounded px-4 py-2 my-2"
       />
-      <button onClick={getLocation} className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2">
+
+      <button
+        onClick={getLocation}
+        className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+      >
         Get Location
       </button>
-      {image && <img src={URL.createObjectURL(image)} alt="Uploaded" className="block my-4 mx-auto max-w-full h-auto" />}
+
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt="Uploaded"
+          className="block my-4 mx-auto max-w-full h-auto"
+        />
+      )}
+
       {latitude && longitude && (
         <div className="my-4">
           <p className="font-semibold">Latitude: {latitude}</p>
           <p className="font-semibold">Longitude: {longitude}</p>
         </div>
       )}
-      <label htmlFor="description" className="block font-semibold">Description (optional):</label>
+
+      <label htmlFor="description" className="block font-semibold">
+        Description (optional):
+      </label>
       <textarea
         id="description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className="block border border-gray-300 rounded px-4 py-2 my-2"
       />
-      <button onClick={handleSubmit} className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2">
+
+      <button
+        onClick={handleSubmit}
+        className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+      >
         Submit
       </button>
-      {isSubmitted && <p className="font-semibold text-green-600">Data sent successfully</p>}
+
+      {isSubmitted && (
+        <p className="font-semibold text-green-600">Data sent successfully</p>
+      )}
     </div>
   );
 };
