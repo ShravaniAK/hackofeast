@@ -33,12 +33,12 @@ const Home = () => {
           Our Services
         </h1>
 
-        <div className="container mx-auto flex justify-center">
-          <div className="w-full md:w-auto md:flex justify-between">
+        <div className="container mx-auto flex justify-center items-center">
+          <div className="w-full md:w-auto flex flex-col md:flex-row mx-auto justify-center items-center">
             {/* Service 1: Rescue Injured Pet */}
             <div
               className="bg-turquoise-500 text-white rounded-lg overflow-hidden shadow-lg"
-              style={{ width: "250px", marginRight: "20px" }} // Added inline CSS for right margin
+              style={{ width: "300px", marginRight: "20px" }} // Added inline CSS for right margin
             >
               <div className="flex justify-center items-center h-48">
                 <div className="w-1/2 h-1/2 flex justify-center items-center">
@@ -116,10 +116,9 @@ const Home = () => {
         Featured Pets
       </h1>
 
-      <div className="flex justify-center">
-        <div className="bg-white py-16 mt-8">
-          <div className="container mx-auto">
-            <div className="flex overflow-x-auto" style={{ gap: "2rem" }}>
+      <div className="flex items-center justify-center sm:flex-col">
+       
+            <div className="flex sm:flex-col flex-wrap justify-center" style={{ gap: "2rem" }}>
               {/* Featured Pet 1 */}
               <div className="flex-shrink-0">
                 <img
@@ -157,8 +156,10 @@ const Home = () => {
                 <p className="text-center mt-2 text-teal-500">Pet Name 1</p>
               </div>
             </div>
-          </div>
-        </div>
+         
+      </div>
+      <div className="footer p-2 text-center" style={{marginTop:'7rem', background:'#9ee5df'}}>
+       <div>made with love </div>
       </div>
     </div>
        

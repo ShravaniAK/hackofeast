@@ -34,8 +34,8 @@ const ProductList = () => {
               <div className="p-4">
                 <div className="text-xl">{product.name}</div>
                 <div>{product.description}</div>
-                <div className="text-xs text-gray-500">Quantity present : {product.quantity}</div>
-                <div className="text-xs text-gray-500">{product.category}</div>
+                {/* <div className="text-xs">Quantity present : {product.quantity}</div> */}
+                {/* <div className="text-xs">{product.category}</div> */}
               </div>
             </Link>
           </li>
