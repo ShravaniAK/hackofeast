@@ -56,6 +56,7 @@ app.use(
             "http://localhost:3000",
             'http://localhost:5173',
             'https://hackofeast.onrender.com',
+            'https://hackofeast.vercel.app/',
         ],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         credentials: true,
