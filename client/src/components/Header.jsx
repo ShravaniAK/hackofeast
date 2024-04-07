@@ -93,6 +93,14 @@ function Header() {
               Market Place
             </Link>
             <Link
+              to="/cart"
+              className={`block px-4 py-2 text-white ${
+                location.pathname === '/cart' ? 'underline' : ''
+              }`}
+            >
+            Cart
+            </Link>
+            <Link
               to="/sos"
               className={`block px-4 py-2 text-white ${
                 location.pathname === '/sos' ? 'underline' : ''
@@ -116,14 +124,14 @@ function Header() {
             >
               Vaccine Centers
             </Link>
-            <Link
+            {/* <Link
               to="/contact"
               className={`block px-4 py-2 text-white ${
                 location.pathname === '/contact' ? 'underline' : ''
               }`}
             >
               Contact us
-            </Link>
+            </Link> */}
             <button
               onClick={handleLogout}
               className="block px-4 py-2 text-white hover:bg-gray-700"
@@ -144,6 +152,12 @@ function Header() {
         >
           Market Place
         </Link>
+        <Link
+          to="/cart"
+          className={` ${location.pathname === '/cart' ? 'underline' : ''}`}
+        >
+         Cart
+        </Link>
         <Link to="/sos" className={` ${location.pathname === '/sos' ? 'underline' : ''}`}>
           SOS/Rescue
         </Link>
@@ -156,9 +170,9 @@ function Header() {
         <Link to="/vaccine" className={` ${location.pathname === '/vaccine' ? 'underline' : ''}`}>
           Vaccine Centers
         </Link>
-        <Link to="/contact" className={` ${location.pathname === '/contact' ? 'underline' : ''}`}>
+        {/* <Link to="/contact" className={` ${location.pathname === '/contact' ? 'underline' : ''}`}>
           Contact us
-        </Link>
+        </Link> */}
         <div className="flex items-center">
           <img className="icon h-8 w-8" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="user icon" />
           <div className="ml-2">

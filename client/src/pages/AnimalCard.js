@@ -3,7 +3,7 @@ import React from 'react';
 
 const AnimalCard = ({ animal, onAssignmentChange }) => {
   const { _id, imageUrl, animalName, description, latitude, longitude, status } = animal;
-  const dateTime = new Date().toLocaleString();
+  const dateTime = new Date().toLocaleString(); // You can replace this with the actual timestamp if available
 
   const handleStatusChange = (event) => {
     const newStatus = event.target.value;
@@ -21,11 +21,11 @@ const AnimalCard = ({ animal, onAssignmentChange }) => {
         <p className="text-gray-700 mb-2">Description: {description}</p>
         <p className="text-gray-700 mb-4">Date and Time: {dateTime}</p>
         <select
-          value={status || 'help-wanted'} // Set the default value to 'help-wanted' if status is falsy
+          value={status}
           onChange={handleStatusChange}
           className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
-          <option value="help-wanted">Help Wanted</option>
+          <option value="help wanted">Help Wanted</option>
           <option value="done">Done</option>
         </select>
       </div>

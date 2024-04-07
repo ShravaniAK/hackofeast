@@ -25,7 +25,7 @@ const Dashboard = () => {
   const handleAssignmentChange = async (animalId, status) => {
     try {
       const url = `https://hackofeast.onrender.com/SOS/update/${animalId}`;
-      const response = await axios.post(url, { status });
+      const response = await axios.put(url, { status });
 
       // Update the local state and the database
       setAnimals((prevAnimals) =>
